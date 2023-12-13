@@ -1,0 +1,25 @@
+{% extends 'Catalogos/Categorias/base2.html'%}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 font-weight-bold text-gray-800">Nuevo Producto</h1>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+
+            </div>
+            <div class="card-body">
+                {{ Mensaje }}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+
+                    <button  type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

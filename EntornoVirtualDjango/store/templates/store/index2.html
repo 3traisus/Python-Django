@@ -1,0 +1,21 @@
+{% extends './plantilla_base.html'%}
+
+{% block categorias%}
+<section class="ftco-section ftco-no-pb">
+    <div class="container">
+        <div class="row lista-categorias">
+            {% for categoria in categorias%}
+                <div class="col-lg-2 col-md-4">
+                    <a href="#">
+                        <div class="sort w-100 text-center ftco-animate">
+                            <div class="img" style="background-image: url({{categoria.imagen}});">
+                            </div>
+                            <h3>{{categoria.nombre.capitalize}}</h3>
+                        </div>
+                    </a> 
+                </div> 
+            {%endfor%}
+        </div>
+    </div>
+</section>
+{% endblock %}

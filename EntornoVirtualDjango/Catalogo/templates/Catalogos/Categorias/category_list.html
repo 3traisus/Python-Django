@@ -1,0 +1,10 @@
+{% extends 'Catalogos/Categorias/base2.html'%}
+
+{% block contenido %}
+    {{Categoria}}
+
+    {% for ele in Categ %}
+        {{ele.id}}
+        {{ele.nombre}}
+    {% endfor %}
+{% endblock contenido %}

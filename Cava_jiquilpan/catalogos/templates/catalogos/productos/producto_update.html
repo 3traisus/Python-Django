@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 font-weight-bold text-primary">Modificar producto</h1>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+
+            </div>
+            <div class="card-body">
+                {{ mensaje }}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+
+                    <div class="d-flex justify-content-end">
+                        <a href="{% url 'catalogos:producto_list' %}" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-undo"></i>
+                                        </span>
+                            <span class="text">Cancelar</span>
+                        </a>
+
+                        &nbsp
+
+                        <button id="btn-aceptar" type="submit" class="btn-aceptar">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

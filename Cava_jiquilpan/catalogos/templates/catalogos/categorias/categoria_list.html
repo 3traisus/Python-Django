@@ -1,0 +1,86 @@
+{% extends 'base/base.html' %}
+
+{% block javascript %}
+    <script>
+        function eliminar_producto(id) {
+            Swal.fire({
+                'title': 'Eliminar categoria',
+                'text': 'Esta acción no se puede deshacer, ¿seguro que deseas eliminar?',
+                'icon': 'question',
+                'showCancelButton': true,
+                'cancelButtonText': 'Cancelar',
+                'confirmButtonText': 'Eliminar',
+                'reverseButtons': true,
+                'confirmButtonColor': '#E74A3B',
+            })
+            .then(function (result) {
+                if(result.isConfirmed) {
+                    window.location.href = '/catalogos/categorias-delete/'+ id + '/'
+                }
+            })
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 font-weight-bold text-primary">Categorias</h1>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                {#                            <h6 class="m-0 font-weight-bold text-primary">Listado de categorias</h6>#}
+                <a href="{% url 'catalogos:categoria_new' %}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                    <span class="text">Nueva categiria</span>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Clave</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Descuento</th>
+                            <th>Estado</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for categoria in categorias %}
+                            <tr>
+                                <td>{{ categoria.id }}</td>
+                                <td>{{ categoria.clave }}</td>
+                                <td>{{ categoria.nombre }}</td>
+                                <td>{{ categoria.descripcion }}</td>
+                                <td>{{ categoria.descuento }}</td>
+                                <td>{{ categoria.estado }}</td>
+                                <td>
+                                    <a href="{% url 'catalogos:categoria_update' categoria.id %}" class="btn btn-info btn-circle btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" onclick="eliminar_producto({{ categoria.id }})" class="btn btn-danger btn-circle btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

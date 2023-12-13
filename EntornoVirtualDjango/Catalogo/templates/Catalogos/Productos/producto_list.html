@@ -1,0 +1,71 @@
+{% extends 'Catalogos/Categorias/base2.html'%}
+
+{% block contenido %}
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Productos</h1>
+
+        <!-- DataTales Example -->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Categoria</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Tipo</th>
+                                <th>Presentacion</th>
+                                <th>Costo</th>
+                                <th>Ganancia</th>
+                                <th>Descuento</th>
+                                <th>Existencia</th>
+                                <th>Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for producto in productos %}
+                            <tr>
+                                <td>{{ producto.id_prod }}</td>
+                                <td>{{ producto.id_cat }}</td>
+                                <td>{{ producto.nombre }}</td>
+                                <td>{{ producto.desc }}</td>
+                                <td>{{ producto.tipo }}</td>
+                                <td>{{ producto.presentacion }}</td>
+                                <td>{{ producto.costo }}</td>
+                                <td>{{ producto.ganancia }}</td>
+                                <td>{{ producto.descuento }}</td>
+                                <td>{{ producto.existencia }}</td>
+                                <td>{{ producto.imagen }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <nav>
+                    {% if is_paginated %}
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                            {% endif %}
+                
+                            {% for i in paginator.page_range %}
+                                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                                    <a href="?page={{i}}">{{ i }}</a>
+                                </li>
+                            {% endfor %}
+                
+                            {% if page_obj.has_next %}
+                                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </nav>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+
